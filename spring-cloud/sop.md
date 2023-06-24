@@ -51,6 +51,28 @@ https://nacos.io/zh-cn/docs/quick-start-docker.html
   @RefreshScope // 动态刷新配置
   ```
 
+# 熔断
+
+配合 feign使用：
+
+```java
+@FeignClient(value = "user-service",fallback = UserFallbackService.class)
+public interface UserService {
+}
+```
+
+fallback指定服务降级逻辑。
+
+指定熔断算法：
+
+```yaml
+feign: # 下面两者二选一
+  hystrix:
+    enabled: true #在Feign中开启Hystrix
+  sentinel:
+    enabled: true #在Feign中开启Sentinel
+```
+
 # Spring
 
 https://blog.csdn.net/qq_43377749/article/details/115442050
