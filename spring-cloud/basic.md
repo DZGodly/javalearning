@@ -10,7 +10,15 @@ https://zhuanlan.zhihu.com/p/112539441
 
 ## Nacos 服务发现/配置中心
 
-// todo
+* **客户端项目启动，是怎么自动发起服务注册？**
+
+  1. spring读取nacos提供的`spring.factories`文件，创建其中的配置类`NacosServiceRegistryAutoConfiguration`
+  2. 配置类会注册两个Bean，其中一个Bean——`NacosServiceRegistry`，其`register`方法包含实际注册的代码逻辑。另一个 Bean——`NacosAutoServiceRegistration` 会依赖`NacosServiceRegistry`
+  3. 利用 **`Spring`** **`事件监听`** ，在监听的方法中`onApplicationEvent`最终会调用的 `register` 方法，从而完成自动注册。
+
+  ![image-20230708152444653](./pic/image-20230708152444653.png)
+
+  
 
 ## Zuul vs Spring Cloud Gateway
 
