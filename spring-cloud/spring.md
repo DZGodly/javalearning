@@ -1,6 +1,12 @@
+# 面筋
+
+https://github.com/Snailclimb/JavaGuide/blob/main/docs/system-design/framework/spring/spring-knowledge-and-questions-summary.md
+
 # 控制反转（ Inverse of Control , IOC ）
 
 IOC：不直接控制import那个具体类，而是把控制权交给容器，由容器决定import哪个组件。
+
+https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486938&idx=1&sn=c99ef0233f39a5ffc1b98c81e02dfcd4
 
 https://javadoop.com/post/spring-ioc
 
@@ -19,3 +25,26 @@ BeanFactory 是生产和管理 Bean的实例。
 * ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实是委托给这个实例来处理的。
 
   ApplicationContext 既继承了BeanFactory，也组合了BeanFactory
+
+# 面向切面编程（Aspect-Oriented Programming，AOP）
+
+## 动态代理
+
+![SpringAOPProcess](./pic/proxy.png)
+
+
+
+* JDK Proxy：需要目标类实现某个接口
+* CGLib Proxy：不要求实现接口，以生成子类的方式去代理
+
+
+
+## 事务
+
+@Transactional 注解利用了 AOP 思想，动态生成代理类，实现事务逻辑。
+
+### 事务传播
+
+* **`PROPAGATION_REQUIRED`**：默认传播行为，也是使用的最多的一个事务传播行为。如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。
+* **`PROPAGATION_REQUIRES_NEW`**和**`PROPAGATION_NESTED`**的区别：外部事务抛出异常时，PROPAGATION_REQUIRES_NEW 不影响内部事务的提交，而 Nested 会。https://blog.csdn.net/aiyaya_66da/article/details/94171771
+
