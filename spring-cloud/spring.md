@@ -25,6 +25,8 @@ BeanFactory 是生产和管理 Bean的实例。
 * ApplicationContext 继承自 BeanFactory，但是它不应该被理解为 BeanFactory 的实现类，而是说其内部持有一个实例化的 BeanFactory（DefaultListableBeanFactory）。以后所有的 BeanFactory 相关的操作其实是委托给这个实例来处理的。
 
   ApplicationContext 既继承了BeanFactory，也组合了BeanFactory
+  
+* ContextRefreshedEvent 事件发生在容器初始化完毕后。此时 Spring 已经将所有的 bean 被成功加载，我们可以在这个监听器中注入我们要用到的 bean
 
 # 面向切面编程（Aspect-Oriented Programming，AOP）
 
