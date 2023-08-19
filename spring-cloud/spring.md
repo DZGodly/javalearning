@@ -30,6 +30,10 @@ BeanFactory 是生产和管理 Bean的实例。
 
 # 面向切面编程（Aspect-Oriented Programming，AOP）
 
+## 原理
+
+参见 BeanPostProcessor 接口。
+
 ## 动态代理
 
 ![SpringAOPProcess](./pic/proxy.png)
@@ -49,4 +53,17 @@ BeanFactory 是生产和管理 Bean的实例。
 
 * **`PROPAGATION_REQUIRED`**：默认传播行为，也是使用的最多的一个事务传播行为。如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。
 * **`PROPAGATION_REQUIRES_NEW`**和**`PROPAGATION_NESTED`**的区别：外部事务抛出异常时，PROPAGATION_REQUIRES_NEW 不影响内部事务的提交，而 Nested 会。https://blog.csdn.net/aiyaya_66da/article/details/94171771
+
+# Bean生命周期
+
+![img](./pic/v2-97e6b7630ad4b78716fd273c84a9c294_720w.webp)
+
+* new
+* BeanPostProcessor.postProcessBeforeInitialization
+* InitializingBean.afterPropertiesSet
+* BeanPostProcessor.postProcessAfterInitialization
+
+## BeanPostProcessor
+
+https://www.jianshu.com/p/1417eefd2ab1
 
